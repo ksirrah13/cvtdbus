@@ -1,0 +1,26 @@
+<div ng-controller="Page1Ctrl" id="Page1">
+
+<div id="title1" ng-click="title1Tap()">
+<h1>Stop Locations</h1>
+
+</div>
+
+<div id="list0">
+<div>
+  <div class="list">
+    <a
+      href="#"
+      class="item item-icon-right"
+      ng-repeat="item in KimonoTest"
+      ng-click="list0ListTap(item)">
+      {{ item.Address }}
+      
+        <i class="icon ion-ios7-arrow-right"></i>
+      
+    </a>
+  </div>
+</div>
+
+</div>
+
+</div>

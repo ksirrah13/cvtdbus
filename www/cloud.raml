@@ -1,0 +1,140 @@
+#%RAML 0.8
+title: Steroids Data
+mediaType: application/json
+baseUri: https://rest-api.appgyver.com/v1/
+
+traits:
+  - securedBySteroidsApiKey:
+      headers:
+        steroidsApiKey:
+          type: string
+          example: identificationhashgoeshere
+          default: b5e237d5bfd7dcac4e17e22b4b23fb32b47a1571417b12a33dde657576fe8c9a
+        steroidsAppId:
+          type: integer
+          example: 1234
+          default: 24675
+
+schemas:
+  - Smashes: '{"$schema":"http://json-schema.org/schema","title":"Smash collection","type":"object","properties":{"results.collection1":{"type":"array","items":{"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical Smash representation","properties":{"property1":{"type":"object"},"property2":{"type":"object"},"property4":{"type":"object"},"hash":{"type":"string"}},"required":[]}}}}'
+  - Smash: '{"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical Smash representation","properties":{"property1":{"type":"object"},"property2":{"type":"object"},"property4":{"type":"object"},"hash":{"type":"string"}},"required":[]}'
+
+resourceTypes:
+  - kimono_collection:
+      usage: This resourceType should be used for any collection of items
+      is: [ securedBySteroidsApiKey ]
+      get:
+        description: |
+          {
+            "action": "collection"
+          }
+        responses:
+          200:
+            description: |
+              {
+                "rootKey": "results.collection1"
+              }
+            body:
+              application/json:
+                schema: <<resourcePathName>> # e.g cars
+
+
+/Smash:
+  description: |
+    {
+      "resourceName": "Smash"
+    }
+  type: kimono_collection
+  
+
+/KimonoTest:
+  description: |
+    {
+      "resourceName": "KimonoTest"
+    }
+  get:
+    is: [ securedBySteroidsApiKey ]
+    description: |
+      {
+        "action": "collection"
+      }
+  
+    responses:
+      200:
+        description: |
+          {
+            "rootKey": "results.Bus"
+          }
+  
+        body:
+          application/json:
+            schema: |
+              {"$schema":"http://json-schema.org/schema","title":"KimonoTest collection","type":"object","properties":{"results.Bus":{"type":"array","items":{"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical KimonoTest representation","properties":{"Time":{"type":"string"},"Address":{"type":"string"},"Order":{"type":"string"},"StopID":{"type":"string"}},"required":[]}}}}
+  
+  post:
+    is: [ securedBySteroidsApiKey ]
+    description: |
+      {
+        "action": "create"
+      }
+  
+    responses:
+      200:
+        description: |
+          {
+          }
+  
+        body:
+          application/json:
+            schema: |
+              {"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical KimonoTest representation","properties":{"Time":{"type":"string"},"Address":{"type":"string"},"Order":{"type":"string"},"StopID":{"type":"string"}},"required":[]}
+  
+
+  /{id}:
+    get:
+      is: [ securedBySteroidsApiKey ]
+      description: |
+        {
+          "action": "find"
+        }
+    
+      responses:
+        200:
+          description: |
+            {
+            }
+    
+          body:
+            application/json:
+              schema: |
+                {"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical KimonoTest representation","properties":{"Time":{"type":"string"},"Address":{"type":"string"},"Order":{"type":"string"},"StopID":{"type":"string"}},"required":[]}
+    
+    put:
+      is: [ securedBySteroidsApiKey ]
+      description: |
+        {
+          "action": "update"
+        }
+    
+      responses:
+        200:
+          description: |
+            {
+            }
+    
+          body:
+            application/json:
+              schema: |
+                {"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical KimonoTest representation","properties":{"Time":{"type":"string"},"Address":{"type":"string"},"Order":{"type":"string"},"StopID":{"type":"string"}},"required":[]}
+    
+    delete:
+      is: [ securedBySteroidsApiKey ]
+      description: |
+        {
+          "action": "destroy"
+        }
+    
+      responses:
+        200:
+
+

@@ -1,0 +1,21 @@
+
+      body, html {
+        background-color: #ebebeb !important;
+      }
+
+      body, .ionic-body {
+        font-family: Avenir-Roman;
+      }
+
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: Avenir-Roman;
+      }
+
+      .tab-item {
+        font-family: Avenir-Roman;
+      }
+
+      input, button, select, textarea {
+        font-family: Avenir-Roman;
+      }
+    
